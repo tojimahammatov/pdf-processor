@@ -12,7 +12,7 @@ pdf3Reader = PyPDF2.PdfFileReader(pdf3File)
 
 # Create a new PdfFileWriter object which represents a blank PDF document
 pdfWriter = PyPDF2.PdfFileWriter()
- 
+
 # Loop through all the pagenumbers for the first document
 for pageNum in range(pdf1Reader.numPages):
     pageObj = pdf1Reader.getPage(pageNum)
