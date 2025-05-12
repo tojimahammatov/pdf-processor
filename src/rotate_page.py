@@ -1,5 +1,5 @@
 import sys
-import PyPDF2 as pdf
+import pypdf as pdf
 
 
 def rotate_page(
@@ -7,16 +7,15 @@ def rotate_page(
     page_number: int,
 ):
     # read pdf file
-    with open(input_file, 'rb') as fp:
-        pdf_reader = pdf.PdfFileReader(fp)
+    pdf_reader = pdf.PdfReader(input_file)
 
-    # create a writer for black pdf
-    pdf_writer = pdf.PdfFileWriter()
+    # create a writer for blank pdf
+    pdf_writer = pdf.PdfWriter()
 
     for page_num in range(len(pdf_reader.pages)):
         page = pdf_reader.pages[page_num]
         if page_num == (page_number - 1):       # page index starts from 0
-            page.rotate_clockwise(90)            # defines rotation angle and direction
+            page.rotate(90)            # defines rotation angle and direction
         pdf_writer.add_page(page)
 
     output_file = input_file.replace('.pdf', '_rotated.pdf')
