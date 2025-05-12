@@ -1,5 +1,5 @@
 import sys
-import PyPDF2 as pdf
+import pypdf as pdf
 
 
 def add_page_to_pdf(
@@ -9,14 +9,11 @@ def add_page_to_pdf(
     adding_page_index: int = 0, # default means that first page of `input_file2` will be added
 ):
     # read the files
-    with open(input_file1, 'rb') as fp:
-        pdf1_reader = pdf.PdfFileReader(fp)
-
-    with open(input_file2, 'rb') as fp:
-        pdf2_reader = pdf.PdfFileReader(fp)
+    pdf1_reader = pdf.PdfReader(input_file1)
+    pdf2_reader = pdf.PdfReader(input_file2)
 
     # Create a new PdfFileWriter object which represents a blank PDF document
-    pdf_writer = pdf.PdfFileWriter()
+    pdf_writer = pdf.PdfWriter()
 
     # Loop through all the page numbers for the first document
     for page_num in range(len(pdf1_reader.pages)):
